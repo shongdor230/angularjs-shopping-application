@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"ng-app="MyApp" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script type="text/javascript" src='shoppinglist/shoppingController.js'></script>
+<script type="text/javascript" src='orderedlist/orderscontroller.js'></script>
+<script type="text/javascript" src='recipe_book/recipebookcontroller.js'></script>
+</head>
+<body> 
+  <!--   
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Restaurant</a>
+      </div>
+      <ul class="nav navbar-nav mr-auto">
+        <li class="active nav-item"><a href="#">Recipe Book</a></li>
+        <li class="nav-item"><a href="#">Recipes</a></li>
+        <li class="nav-item"><a href="#!shoppinglist">shopping List</a></li>
+      </ul>
+    </div>
+  </nav> -->
+ 
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Restaurant</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation"></button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item" ng-class="{ active: isActive('/recipebook')}">
+                <a class="nav-link py-0" href="#!recipebook"><span class="customSize">Recipe Book</span></a></li>
+            </li>
+              <li class="nav-item" ng-class="{ active: isActive('/shoppinglist')}">
+                <a class="nav-link py-0" href="#!shoppinglist"><span class="customSize">shopping List<span></span></a></li>
+              </li>
+              <li class="nav-item" ng-class="{ active: isActive('/orders')}">
+                <a class="nav-link py-0" href="#!orders"><span class="customSize">ORDERS<span></span></a></li>
+              </li>
+          </ul>
+      </div>
+  </nav>
+            <div ng-view> 
+            </div>
+</body>
+</html>
+

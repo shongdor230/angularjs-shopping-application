@@ -1,0 +1,107 @@
+<div class="mydiv-style">
+  <img src="CSS\shopping.png" style="height:200px;width:100%"></img>
+</div>
+<div class="alert alert-success" ng-show="success">
+    {{successMessage}}
+</div>
+<div class="table-responsive" style="overflow-x: unset;width:80%;margin: auto;padding-top:70px;">
+    <table datatable="ng" dt-options="vm.dtOptions" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>Food Name</th>
+       <th>Amount per item</th>
+       <th>Quantity</th>
+       <th>Total Amount per product</th>
+       <th>Edit</th>
+       <th>Delete</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr ng-repeat="item in shoppingItem">
+       <td>{{item.foodName}}</td>
+       <td>{{item.amount_per_item}}</td>
+       <td>{{item.quantity}}</td>
+       <td>{{item.amount_total}}</td>
+       <td><button type="button" data-toggle="modal" data-target="#myModal" ng-click="fetchSingleData(item)" class="btn btn-warning btn-xs">Edit</button></td>
+       <td><button type="button" ng-click="deleteCardData(item.shoppingId)" class="btn btn-danger btn-xs">Delete</button></td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+
+   <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="margin:auto;">EDIT FORM</h4>
+        </div>
+        <div class="modal-body">
+               <form>
+                <div class="form-group">
+                    <label for="foodName"></label>Food Name:
+                    <input type="text" class="form-control" value="{{foodName}}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="amount">Price per item:</label>
+                    <input type="number" class="form-control" value="{{amount}}" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Quantity:</label>
+                    <input type="number" class="form-control" value="{{quantity}}" ng-change="quantityChanged()" ng-model="quant">
+                  </div>
+                   <!-- <div class="form-group">
+                      <label>Total Amount per product:</label>
+                      <input id="total" type="number" class="form-control" value="{{totalAmount}}"  ng-model="totalAmount">
+                    </div> -->
+                  <div class="form-group" style="text-align: center;">
+                        <button type="button" class="btn btn-success" ng-click="saveEdit(shoppingId,quant,amount)" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      </div>
+              </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  <div style="text-align: center;padding-top:60px;padding-bottom: 100px;">
+        <button type="button" data-toggle="modal" data-target="#orderModal" class="btn btn-success btn-xs">ORDER NOW</button></td>
+       <button type="button" class="btn btn-info btn-xs" ng-click="addMoreItems()" class="btn btn-info btn-xs">Add more Orders</button></td>
+      </div>
+
+  <div id="orderModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" style="margin:auto;">Your Details</h4>
+        </div>
+        <div class="modal-body">
+               <form>
+                <div class="form-group">
+                    <label for="fullName"></label>Full Name:
+                    <input type="text" class="form-control" ng-model="fullName">
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone number:</label>
+                    <input type="number" class="form-control" ng-model="phone">
+                  </div>
+                  <div class="form-group">
+                    <label for="my-textarea">Address:</label>
+                    <textarea id="my-textarea" class="form-control" rows="3" ng-model="address"></textarea>
+                  </div>
+                  <div class="form-group" style="text-align: center;">
+                        <button type="button" class="btn btn-success" ng-click="orderFood(shoppingItem,fullName,phone,address)" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+              </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+

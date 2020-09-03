@@ -1,0 +1,27 @@
+<div class="mydiv-style">
+    <img src="CSS\orderlist.png" style="height:200px;width:100%"></img>
+  </div>
+<div class="table-responsive" style="overflow-x: unset;width:80%;margin: auto;padding-top:70px;">
+    <table datatable="ng" dt-options="vm.dtOptions" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>Full Name</th>
+       <th>Phone</th>
+       <th>Address</th>
+       <th>Food Ordered ID</th>
+       <th>Delete</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr ng-repeat="item in ordereditems">
+       <td>{{item.fullName}}</td>
+       <td>{{item.phone}}</td>
+       <td>{{item.myaddress}}</td>
+       <td>{{item.foodOrdered}}</td>
+       <td><button type="button" ng-click="deleteOrders(item.orderId)" class="btn btn-danger btn-xs">Delete</button></td>
+      </tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+

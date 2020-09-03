@@ -1,0 +1,109 @@
+<div class="mydiv-style">
+  <img src="CSS\recipebook.png" style="height:200px;width:100%"></img>
+</div>
+ <div class="col-xs-12 left-div card-div">
+    <div class="button-recipe">               
+      <button type="button" class="btn btn-success" ng-click="newRecipe()">New Recipe</button>   
+    </div>
+    <div style="padding:10px">
+    <span style="font-weight:bold;">Please select a recipe.</span>
+  </div>
+  <div class="col-xs-12">
+    <ul class="list-group no-bullets">
+         <li ng-repeat="item in foodItems" class="text-center clearfix">
+          <div class="customize-card" ng-class="{'color--highlighted': item == selectedItem }" ng-click="selectedFood(item)" >
+            <span style="font-weight:bold; vertical-align:middle;float:left">{{item.itemName}}</span>
+            <img ng-src="{{ item.imgUrl }}" width="40" height="40" style="vertical-align:middle;float:right"/>
+            </div>
+         </li>
+    </ul>
+    </div>
+  </div>
+<div class="col-xs-12 right-div" >
+        <div class="card-body text-dark center" ng-if="showDetails==true">
+          <img ng-src="{{ imgUrl }}" width="400" height="300"/>
+          <div class="customize-space">
+            <span style="font-weight:bold" >{{name}}</span>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Manage Recipe
+            </button>
+            <div class="dropdown-menu customize-space" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" ng-click="editRecipe(id,name,imgUrl,price,description)">Edit Recipe</a>
+              <a class="dropdown-item" ng-click="deleteRecipe(id)">Delete Recipe</a>
+            </div>
+            <select class="customize-space" ng-model="selectQuantity" style='width:40px;height:32px' ng-size='30' ng-init=" selectQuantity = quantityOptions[0]" ng-options="options for options in quantityOptions">
+             
+            </select>
+            <button type="button" class="btn btn-success customize-space" ng-click="addToShop(id,name,price,selectQuantity)">Add to Card</button>
+          </div>
+          <div class="card custom-span">
+          <span>Price: {{price}}</span>
+          </div>
+          <div class="card custom-span">
+          <span>Description: {{description}}</span>
+          </div>
+        </div>
+
+
+<div class="col-xs-12 form-style" ng-if="showInput==true">
+  <div class="alert alert-success" ng-show="success">
+    {{successMessage}}
+</div>
+  <div>
+    <form name="recipeForm">
+      <div class="form-group">
+          Name <input id="name" type="text" ng-model="itemName" class="form-control" placeholder="item"  required>
+      </div>
+      <div class="form-group">
+          Image URL <input id="imgUrl" type="url" ng-model="imgUrl" class="form-control" placeholder="item"  required>
+      </div>
+      <div class="form-group">
+        Price <input id="price" type="text" ng-model="price"  class="form-control" placeholder="Enter price"  required>
+    </div>
+    <div class="form-group">
+      <label for="my-textarea">Description</label>
+      <textarea id="my-textarea" class="form-control" name="description" rows="5" ng-model="description" required></textarea>
+    </div>
+      <div class="form-group">
+          <button type="button" class="btn btn-success" ng-click="save(itemName,imgUrl,price,description)" ng-disabled="recipeForm.$invalid">Save</button>
+          <button type="button" class="btn btn-secondary" ng-click="cancel()">Cancel</button>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" ng-click="addIngredients()" ng-disabled="recipeForm.$invalid">Add Ingredients</button>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="margin:auto;">Add Ingredients</h4>
+      </div>
+      <div class="modal-body">
+             <form name="ingredientForm">
+               <div class="form-group">
+                 <label for="my-textarea">Ingredient_1:</label>
+                 <textarea id="my-textarea" class="form-control" name="ingredient1" ng-model="ingredient1" rows="3" required></textarea>
+               </div>
+              <div class="form-group">
+                <label for="my-textarea">Ingredient_2:</label>
+                <textarea id="my-textarea" class="form-control" name="ingredient2" ng-model="ingredient2" rows="3" required></textarea>
+              </div>
+                <div class="form-group" style="text-align: center;">
+                      <button type="button" class="btn btn-success" ng-disabled="ingredientForm.$invalid" ng-click="saveIngredient(id,ingredient1,ingredient2)" data-dismiss="modal">Save</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                 </div>
+            </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
